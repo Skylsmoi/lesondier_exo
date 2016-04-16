@@ -1,0 +1,140 @@
+$player-bg-color: #111;
+$player-border-color: #555;
+$player-text-color: #fff;
+
+body {
+    font-family: 'Arial';
+    font-size: 12px;
+    background-color: #000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+  padding:0;
+  margin:0;
+}
+
+.no-gutter {
+    margin: 0;
+}
+
+.nopadding {
+   padding: 0 !important;
+}
+
+.player {
+    width: 100%;
+    color: $player-text-color;
+
+    &__list {
+        border-bottom: 1px solid $player-border-color;
+        background-color: $player-bg-color;
+
+        &__item {
+            position: relative;
+            border-bottom: 2px solid $player-border-color;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,222222+100&0.8+0,1+100 */
+            background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(34,34,34,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(34,34,34,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(34,34,34,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#222222',GradientType=0 ); /* IE6-9 */
+
+            &__img {
+                &__status {
+                    position: absolute;
+                    width: 25%;
+                    top: 50%;
+                    left: 12.5%;
+                    margin: -23px 0 0 -23px;
+
+                    img {
+                        width: 45px;
+                        height: 45px;
+                    }
+                }
+
+                &__cover {
+                    width: 25%;
+                }
+            }
+
+            &__info {
+                position: absolute;
+                top: 50%;
+                margin-top: -20px;
+                height: 40px;
+                max-height: 50px;
+                margin-left: 30%;                
+
+                &__title {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    overflow: hidden;
+                    text-overflow: ellipsis; 
+                }
+            }
+        }
+    }
+
+    &__current {
+        border-top: 1px solid $player-border-color;
+        margin: 15px 0;
+        background-color: $player-bg-color;
+
+        &__cover {
+
+            &__img {
+                width: 50%;
+                margin: 15px auto 10px;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            &__info {
+                margin: 0 0 10px;
+                text-align: center;
+
+                &__title {
+                    text-transform: uppercase;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                &__artist {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        &__control {
+            margin: 0 auto;
+            border-top: 1px solid $player-border-color;
+
+            &__buttons {
+                width: 50%;
+                min-width: 201px;
+                margin: 0 auto;
+                text-align: center;
+
+                &__back,
+                &__playpause,
+                &__stop {
+                    display: inline-block;
+                    width:35px;
+                    height: 35px;
+                    margin: 5px 15px;
+
+                    img {
+                        width: 35px;
+                    }
+                }
+            }
+        }
+    }
+}

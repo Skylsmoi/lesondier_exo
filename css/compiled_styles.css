@@ -1,0 +1,95 @@
+body {
+  font-family: 'Arial';
+  font-size: 12px;
+  background-color: #000; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+.container {
+  padding: 0;
+  margin: 0; }
+
+.no-gutter {
+  margin: 0; }
+
+.nopadding {
+  padding: 0 !important; }
+
+.player {
+  width: 100%;
+  color: #fff; }
+  .player__list {
+    border-bottom: 1px solid #555;
+    background-color: #111; }
+    .player__list__item {
+      position: relative;
+      border-bottom: 2px solid #555;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,222222+100&0.8+0,1+100 */
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, #222222 100%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, #222222 100%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, #222222 100%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#222222',GradientType=0 );
+      /* IE6-9 */ }
+      .player__list__item__img__status {
+        position: absolute;
+        width: 25%;
+        top: 50%;
+        left: 12.5%;
+        margin: -23px 0 0 -23px; }
+        .player__list__item__img__status img {
+          width: 45px;
+          height: 45px; }
+      .player__list__item__img__cover {
+        width: 25%; }
+      .player__list__item__info {
+        position: absolute;
+        top: 50%;
+        margin-top: -20px;
+        height: 40px;
+        max-height: 50px;
+        margin-left: 30%; }
+        .player__list__item__info__title {
+          text-transform: uppercase;
+          font-weight: bold;
+          overflow: hidden;
+          text-overflow: ellipsis; }
+  .player__current {
+    border-top: 1px solid #555;
+    margin: 15px 0;
+    background-color: #111; }
+    .player__current__cover__img {
+      width: 50%;
+      margin: 15px auto 10px; }
+      .player__current__cover__img img {
+        width: 100%; }
+    .player__current__cover__info {
+      margin: 0 0 10px;
+      text-align: center; }
+      .player__current__cover__info__title {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: bold; }
+      .player__current__cover__info__artist {
+        font-size: 14px; }
+    .player__current__control {
+      margin: 0 auto;
+      border-top: 1px solid #555; }
+      .player__current__control__buttons {
+        width: 50%;
+        min-width: 201px;
+        margin: 0 auto;
+        text-align: center; }
+        .player__current__control__buttons__back, .player__current__control__buttons__playpause, .player__current__control__buttons__stop {
+          display: inline-block;
+          width: 35px;
+          height: 35px;
+          margin: 5px 15px; }
+          .player__current__control__buttons__back img, .player__current__control__buttons__playpause img, .player__current__control__buttons__stop img {
+            width: 35px; }
+
+/*# sourceMappingURL=compiled_styles.css.map */

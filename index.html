@@ -1,0 +1,80 @@
+<!doctype html>
+<html ng-app="songPlayer">
+
+  <head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/compiled_styles.css">
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </head>
+
+ <body class="container player" ng-controller="playerController as player">
+
+  <div class="row no-gutter">
+    <div class="col-xs-12 nopadding player__list">
+
+      <div class="player__list__item" ng-repeat="song in player.playlist">
+
+        <div class="player__list__item__img">
+          <div class="player__list__item__img__status">
+            <img src="images/play.png" />
+          </div>
+          <img class="player__list__item__img__cover" ng-src="{{song.cover}}" />
+        </div>
+
+        <div class="player__list__item__info">
+          <div class="player__list__item__info__title">
+            {{song.title}}
+          </div>
+          <div class="player__list__item__info__artist">
+            {{song.artist}} 
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-xs-12 nopadding player__current">
+
+      <div class="player__current__cover">
+        <div class="player__current__cover__img">
+          <img ng-src="{{player.playlist[0].cover}}" />
+        </div>
+
+        <div class="player__current__cover__info">
+          <div class="player__current__cover__info__title">
+            {{player.playlist[0].title}}
+          </div>
+          <div class="player__current__cover__info__artist">
+            {{player.playlist[0].artist}} 
+          </div>
+        </div>
+      </div>
+
+      <div class="player__current__control">
+
+        <div class="player__current__control__buttons">
+
+          <div class="player__current__control__buttons__back">
+            <img src="images/back.png" />
+          </div>
+
+          <div class="player__current__control__buttons__playpause">
+            <img src="images/play.png" />
+          </div>
+          
+          <div class="player__current__control__buttons__stop">
+            <img src="images/stop.png" />
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
