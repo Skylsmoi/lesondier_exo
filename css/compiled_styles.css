@@ -95,5 +95,7 @@ body {
           .player__current__control__buttons__back img, .player__current__control__buttons__playpause img, .player__current__control__buttons__stop img {
             width: 35px;
             cursor: pointer; }
+          .player__current__control__buttons__back input[type="button"], .player__current__control__buttons__playpause input[type="button"], .player__current__control__buttons__stop input[type="button"] {
+            display: none; }
 
 /*# sourceMappingURL=compiled_styles.css.map */
