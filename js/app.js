@@ -5,10 +5,10 @@
   var songs = [
     {
       id: 0,
-      title: 'Fingerbib',
-      artist: 'Aphex Twin', 
-      src: 'data/Aphex Twin - Fingerbib.mp3', 
-      cover: 'images/Aphex Twin - Fingerbib.png',
+      title: 'To The Moon',
+      artist: 'Bensley', 
+      src: 'data/Bensley - To The Moon.mp3',
+      cover: 'images/Bensley - To The Moon.png',
       imgStatus: 'play'
     }, { 
       id: 1,
@@ -19,10 +19,10 @@
       imgStatus: 'play',
     }, {
       id: 2,
-      title: 'To The Moon',
-      artist: 'Bensley', 
-      src: 'data/Bensley - To The Moon.mp3',
-      cover: 'images/Bensley - To The Moon.png',
+      title: 'Fingerbib',
+      artist: 'Aphex Twin', 
+      src: 'data/Aphex Twin - Fingerbib.mp3', 
+      cover: 'images/Aphex Twin - Fingerbib.png',
       imgStatus: 'play'
     }
   ];
@@ -32,28 +32,34 @@
     $scope.audio = document.getElementById('player__audio');
     $scope.JQaudio = $('.player__audio');
     $scope.currentPlayingId = 0;
+    $scope.isSongLocked = false;
 
     $scope.isPlaying = function () {
       return !$scope.audio.paused;
     }
 
     $scope.playpause = function(songId) {
+      if ($scope.isSongLocked === true) return;
+
       if (songId === $scope.currentPlayingId) {
         $scope.playpauseOnly();
+
       } else { //switch song, load it
         $scope.JQaudio.attr('autoplay', 'autoplay'); // add autoplay here to not auto play on page load but only on song switch
 
-        $scope.stopAnimate();
+        $scope.stopAnimate(); // stop the animation of the previous song
 
         $scope.currentPlayingId = songId;
 
-        $scope.playAnimate();
+        $scope.playAnimate(); // play animation of the current song
 
         $scope.updatePlaylistImgStatus(songId, 'pause');
       }
     }
 
     $scope.playpauseOnly = function() {
+      if ($scope.isSongLocked === true) return;
+
       if ($scope.isPlaying()) {
         $scope.stopAnimate();
         $scope.audio.pause();
@@ -88,12 +94,15 @@
 
       $('#player__list__item__'+$scope.currentPlayingId).css('background-color','red').animate({
         width: "100%"
-      }, 2000, 'linear', function() {
-
+      }, 60000, 'linear', function() {
+        $scope.isSongLocked = true;
         $scope.audio.pause();
+
         $('#player__list__item__'+$scope.currentPlayingId).css('background-color','#0A51C3').animate({
           width: "0%"
-        }, 30000, 'linear');
+        }, 30000, 'linear', function() {
+          $scope.isSongLocked = false;
+        });
 
       });
     }
