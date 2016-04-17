@@ -97,11 +97,17 @@
       }, 60000, 'linear', function() {
         $scope.isSongLocked = true;
         $scope.audio.pause();
+        $scope.$apply(function () {
+          $scope.updatePlaylistImgStatus($scope.currentPlayingId, 'play');
+        });
 
         $('#player__list__item__'+$scope.currentPlayingId).css('background-color','#0A51C3').animate({
           width: "0%"
         }, 30000, 'linear', function() {
           $scope.isSongLocked = false;
+          $scope.$apply(function () {
+            $scope.updatePlaylistImgStatus($scope.currentPlayingId, 'play');
+          });
         });
 
       });
