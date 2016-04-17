@@ -75,12 +75,17 @@
 
     $scope.stop = function () {
       if ($scope.isPlaying()) $scope.audio.pause();
+      $scope.stopAnimate();
       $scope.audio.currentTime = 0;
+      $('#player__list__item__'+$scope.currentPlayingId).css('width','0%');
       $scope.updatePlaylistImgStatus($scope.currentPlayingId, 'play');
     }
 
     $scope.back = function() {
+      $scope.stopAnimate();
       $scope.audio.currentTime = 0;
+      $('#player__list__item__'+$scope.currentPlayingId).css('width','0%');
+      if ($scope.isPlaying()) $scope.playAnimate();
     }
 
     $scope.updatePlaylistImgStatus = function(songId, status) {
