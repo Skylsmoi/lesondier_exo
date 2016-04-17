@@ -12,18 +12,16 @@
 
  <body class="container player" ng-controller="playerController as player">
 
-  <!--audio class="player__audio" id="player__audio" ng-src="{{player.playlist[currentPlayingId].src}}" autoplay="autoplay"></audio-->
-  <audio class="player__audio" id="player__audio" src="" autoplay="autoplay"></audio>
+  <audio class="player__audio" id="player__audio" ng-src="{{playlist[currentPlayingId].src | trustedAudioUrl}}"></audio>
   
-
   <div class="row no-gutter">
     <div class="col-xs-12 nopadding player__list">
 
-      <div class="player__list__item" ng-repeat="song in player.playlist">
+      <div class="player__list__item" ng-repeat="song in playlist">
 
         <div class="player__list__item__img">
           <div class="player__list__item__img__status songId_{{song.id}}">
-            <img src="images/{{song.imgStatus}}.png" ng-click="player.playpause(song.id)" />
+            <img src="images/{{song.imgStatus}}.png" ng-click="playpause(song.id)" />
           </div>
           <img class="player__list__item__img__cover" ng-src="{{song.cover}}" />
         </div>
@@ -37,6 +35,8 @@
           </div>
         </div>
 
+        <div id="player__list__item__{{song.id}}" class="player__list__item__progressbar"></div>
+
       </div>
 
     </div>
@@ -45,15 +45,15 @@
 
       <div class="player__current__cover">
         <div class="player__current__cover__img">
-          <img ng-src="{{player.playlist[player.currentPlayingId].cover}}" />
+          <img ng-src="{{playlist[currentPlayingId].cover}}" />
         </div>
 
         <div class="player__current__cover__info">
           <div class="player__current__cover__info__title">
-            {{player.playlist[player.currentPlayingId].title}}
+            {{playlist[currentPlayingId].title}}
           </div>
           <div class="player__current__cover__info__artist">
-            {{player.playlist[player.currentPlayingId].artist}} 
+            {{playlist[currentPlayingId].artist}} 
           </div>
         </div>
       </div>
@@ -63,15 +63,15 @@
         <div class="player__current__control__buttons">
 
           <div class="player__current__control__buttons__back">
-            <img src="images/back.png" ng-click="player.back()" />
+            <img src="images/back.png" ng-click="back()" />
           </div>
 
           <div class="player__current__control__buttons__playpause">
-            <img ng-src="images/{{player.playlist[player.currentPlayingId].imgStatus}}.png" ng-click="player.playpauseOnly()" />
+            <img ng-src="images/{{playlist[currentPlayingId].imgStatus}}.png" ng-click="playpauseOnly()" />
           </div>
 
           <div class="player__current__control__buttons__stop">
-            <img src="images/stop.png" ng-click="player.stop()" />
+            <img src="images/stop.png" ng-click="stop()" />
           </div>
 
         </div>

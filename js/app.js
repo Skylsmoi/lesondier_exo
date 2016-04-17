@@ -27,71 +27,87 @@
     }
   ];
 
-  app.controller('playerController', function() {
-    this.playlist = songs;
-    this.audio = document.getElementById('player__audio');
-    this.JQaudio = $('.player__audio');
-    this.currentPlayingId = 0;
+  app.controller('playerController', function($scope) {
+    $scope.playlist = songs;
+    $scope.audio = document.getElementById('player__audio');
+    $scope.JQaudio = $('.player__audio');
+    $scope.currentPlayingId = 0;
 
-    this.isPlaying = function () {
-      return !this.audio.paused;
+    $scope.isPlaying = function () {
+      return !$scope.audio.paused;
     }
 
-    this.playpause = function(songId) {
-      if (songId === this.currentPlayingId) { // same song, do playpause
-        if (this.isPlaying()) {
-          this.audio.pause();
-          this.updatePlaylistImgStatus(songId, 'play');
-        } else {
-          this.audio.play();
-          this.updatePlaylistImgStatus(songId, 'pause');
-        }
+    $scope.playpause = function(songId) {
+      if (songId === $scope.currentPlayingId) {
+        $scope.playpauseOnly();
       } else { //switch song, load it
-        this.JQaudio.attr('src', this.playlist[songId].src); //modify me
-        this.currentPlayingId = songId;
-        this.updatePlaylistImgStatus(songId, 'pause');
+        $scope.JQaudio.attr('autoplay', 'autoplay'); // add autoplay here to not auto play on page load but only on song switch
+
+        $scope.stopAnimate();
+
+        $scope.currentPlayingId = songId;
+
+        $scope.playAnimate();
+
+        $scope.updatePlaylistImgStatus(songId, 'pause');
       }
     }
 
-    this.playpauseOnly = function() {
-      if (this.isPlaying()) {
-        this.audio.pause();
-        this.updatePlaylistImgStatus(this.currentPlayingId, 'play');
+    $scope.playpauseOnly = function() {
+      if ($scope.isPlaying()) {
+        $scope.stopAnimate();
+        $scope.audio.pause();
+        $scope.updatePlaylistImgStatus($scope.currentPlayingId, 'play');
       } else {
-        this.audio.play();
-        this.updatePlaylistImgStatus(this.currentPlayingId, 'pause');
+        $scope.audio.play();
+
+        $scope.playAnimate();
+
+        $scope.updatePlaylistImgStatus($scope.currentPlayingId, 'pause');
       }
     }
 
-    this.stop = function () {
-      if (this.isPlaying()) this.audio.pause();
-      this.audio.currentTime = 0;
-      this.updatePlaylistImgStatus(this.currentPlayingId, 'play');
+    $scope.stop = function () {
+      if ($scope.isPlaying()) $scope.audio.pause();
+      $scope.audio.currentTime = 0;
+      $scope.updatePlaylistImgStatus($scope.currentPlayingId, 'play');
     }
 
-    this.back = function() {
-      this.audio.currentTime = 0;
+    $scope.back = function() {
+      $scope.audio.currentTime = 0;
     }
 
-    this.updatePlaylistImgStatus = function(songId, status) {
-      $.each(this.playlist, function () {
+    $scope.updatePlaylistImgStatus = function(songId, status) {
+      $.each($scope.playlist, function () {
         this.imgStatus = 'play';
         if (this.id === songId) this.imgStatus = status;
       });
     }
 
-    //deprecated
-    this.updatePlayPauseImages = function(songId, status) {
-      $('.player__list__item__img__status').children('img').attr('src', 'images/play.png');
-      if (status === true) {
-        $('.songId_'+songId).children('img').attr('src', 'images/pause.png');
-        $('.player__current__control__buttons__playpause').children('img').attr('src', 'images/pause.png');
-      } else {
-        $('.songId_'+songId).children('img').attr('src', 'images/play.png');
-        $('.player__current__control__buttons__playpause').children('img').attr('src', 'images/play.png');
-      }
-      $('.player__current__cover__img').children('img').attr('src', this.playlist[songId].cover);
+    $scope.playAnimate = function() {
+
+      $('#player__list__item__'+$scope.currentPlayingId).css('background-color','red').animate({
+        width: "100%"
+      }, 2000, 'linear', function() {
+
+        $scope.audio.pause();
+        $('#player__list__item__'+$scope.currentPlayingId).css('background-color','#0A51C3').animate({
+          width: "0%"
+        }, 30000, 'linear');
+
+      });
     }
+
+    $scope.stopAnimate = function() {
+      $('#player__list__item__'+$scope.currentPlayingId).stop();
+    }
+
+  });
+
+  app.filter('trustedAudioUrl', function($sce) {
+    return function(audioFile) {
+      return $sce.trustAsResourceUrl(audioFile);
+    };
   });
 
 })();

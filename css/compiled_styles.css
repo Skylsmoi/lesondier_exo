@@ -27,7 +27,6 @@ body {
     background-color: #111; }
     .player__list__item {
       position: relative;
-      border-bottom: 2px solid #555;
       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,222222+100&0.8+0,1+100 */
       background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, #222222 100%);
       /* FF3.6-15 */
@@ -61,6 +60,10 @@ body {
           font-weight: bold;
           overflow: hidden;
           text-overflow: ellipsis; }
+      .player__list__item__progressbar {
+        width: 0%;
+        height: 3px;
+        background-color: #555; }
   .player__current {
     border-top: 1px solid #555;
     margin: 15px 0;

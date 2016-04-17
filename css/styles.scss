@@ -40,7 +40,6 @@ body {
 
         &__item {
             position: relative;
-            border-bottom: 2px solid $player-border-color;
             /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,222222+100&0.8+0,1+100 */
             background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(34,34,34,1) 100%); /* FF3.6-15 */
             background: -webkit-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(34,34,34,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -81,6 +80,12 @@ body {
                     overflow: hidden;
                     text-overflow: ellipsis; 
                 }
+            }
+
+            &__progressbar {
+                width: 0%;
+                height: 3px;
+                background-color: $player-border-color;
             }
         }
     }
