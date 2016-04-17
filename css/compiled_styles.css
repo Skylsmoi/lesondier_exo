@@ -20,6 +20,8 @@ body {
 .player {
   width: 100%;
   color: #fff; }
+  .player__audio {
+    visibility: hidden; }
   .player__list {
     border-bottom: 1px solid #555;
     background-color: #111; }
@@ -43,7 +45,8 @@ body {
         margin: -23px 0 0 -23px; }
         .player__list__item__img__status img {
           width: 45px;
-          height: 45px; }
+          height: 45px;
+          cursor: pointer; }
       .player__list__item__img__cover {
         width: 25%; }
       .player__list__item__info {
@@ -90,6 +93,7 @@ body {
           height: 35px;
           margin: 5px 15px; }
           .player__current__control__buttons__back img, .player__current__control__buttons__playpause img, .player__current__control__buttons__stop img {
-            width: 35px; }
+            width: 35px;
+            cursor: pointer; }
 
 /*# sourceMappingURL=compiled_styles.css.map */

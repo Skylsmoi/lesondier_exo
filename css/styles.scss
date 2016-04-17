@@ -30,6 +30,10 @@ body {
     width: 100%;
     color: $player-text-color;
 
+    &__audio {
+        visibility: hidden;
+    }
+
     &__list {
         border-bottom: 1px solid $player-border-color;
         background-color: $player-bg-color;
@@ -54,6 +58,7 @@ body {
                     img {
                         width: 45px;
                         height: 45px;
+                        cursor: pointer;
                     }
                 }
 
@@ -132,6 +137,7 @@ body {
 
                     img {
                         width: 35px;
+                        cursor: pointer;
                     }
                 }
             }
