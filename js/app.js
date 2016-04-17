@@ -39,28 +39,45 @@
             if (songId === this.currentPlayingId) { // same song, do playpause
               if (this.isPlaying()) {
                 this.audio.pause();
-                this.updateImages(this.currentPlayingId, false);
+                this.updatePlayPauseImages(this.currentPlayingId, false);
               } else {
                 this.audio.play();
-                this.updateImages(this.currentPlayingId, true);
+                this.updatePlayPauseImages(this.currentPlayingId, true);
               }
             } else { //switch song, load it
               this.JQaudio.attr('src', this.playlist[songId].src);
               this.currentPlayingId = songId;
-              this.updateImages(this.currentPlayingId, true);
+              this.updatePlayPauseImages(this.currentPlayingId, true);
             }
           } else { //if songId === undefined, do playpause to current playing song
             if (this.isPlaying()) {
               this.audio.pause();
-              this.updateImages(this.currentPlayingId, false);
+              this.updatePlayPauseImages(this.currentPlayingId, false);
+            } else if (this.currentPlayingId === -1) {
+              this.JQaudio.attr('src', this.playlist[0].src);
+              this.currentPlayingId = this.playlist[0].id;
+              this.updatePlayPauseImages(this.currentPlayingId, true);
             } else {
               this.audio.play();
-              this.updateImages(this.currentPlayingId, true);
+              this.updatePlayPauseImages(this.currentPlayingId, true);
             }
           }
         }
 
-        this.updateImages = function(songId, status) {
+        this.stop = function () {
+          if (this.isPlaying()) {
+            this.audio.pause();
+            this.audio.currentTime = 0;
+          }
+          $('.player__list__item__img__status').children('img').attr('src', 'images/play.png');
+          $('.player__current__control__buttons__playpause').children('img').attr('src', 'images/play.png');
+        }
+
+        this.back = function() {
+          this.audio.currentTime = 0;
+        }
+
+        this.updatePlayPauseImages = function(songId, status) {
           $('.player__list__item__img__status').children('img').attr('src', 'images/play.png');
           if (status === true) {
             $('.songId_'+songId).children('img').attr('src', 'images/pause.png');
