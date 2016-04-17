@@ -38,21 +38,7 @@
     }
 
     this.playpause = function(songId) {
-      if (songId !== undefined) { //if songId !== undefined, do playpause or switch song
-        if (songId === this.currentPlayingId) { // same song, do playpause
-          if (this.isPlaying()) {
-            this.audio.pause();
-            this.updatePlaylistImgStatus(songId, 'play');
-          } else {
-            this.audio.play();
-            this.updatePlaylistImgStatus(songId, 'pause');
-          }
-        } else { //switch song, load it
-          this.JQaudio.attr('src', this.playlist[songId].src); //modify me
-          this.currentPlayingId = songId;
-          this.updatePlaylistImgStatus(songId, 'pause');
-        }
-      } else { //if songId === undefined, do playpause to current playing song
+      if (songId === this.currentPlayingId) { // same song, do playpause
         if (this.isPlaying()) {
           this.audio.pause();
           this.updatePlaylistImgStatus(songId, 'play');
@@ -60,6 +46,10 @@
           this.audio.play();
           this.updatePlaylistImgStatus(songId, 'pause');
         }
+      } else { //switch song, load it
+        this.JQaudio.attr('src', this.playlist[songId].src); //modify me
+        this.currentPlayingId = songId;
+        this.updatePlaylistImgStatus(songId, 'pause');
       }
     }
 
@@ -74,10 +64,8 @@
     }
 
     this.stop = function () {
-      if (this.isPlaying()) {
-        this.audio.pause();
-        this.audio.currentTime = 0;
-      }
+      if (this.isPlaying()) this.audio.pause();
+      this.audio.currentTime = 0;
       this.updatePlaylistImgStatus(this.currentPlayingId, 'play');
     }
 
